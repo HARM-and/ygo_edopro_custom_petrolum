@@ -1,5 +1,8 @@
--- Diappo, Caffey Barista
+-- Doppio, Caffey Barista
+-- par [Ton nom ou pseudo]
+
 local s,id=GetID()
+
 function s.initial_effect(c)
     -- Effet d'ajout depuis le Deck
     local e1=Effect.CreateEffect(c)
@@ -27,6 +30,7 @@ function s.initial_effect(c)
     e3:SetOperation(s.spop)
     c:RegisterEffect(e3)
 end
+
 -- Effet d'ajout depuis le Deck
 function s.thfilter(c)
     return c:IsSetCard(0xCAF) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()
@@ -46,7 +50,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
     end
 end
 
--- Effet d'invocation spéciale depuis le cimetière en Position de Défense (effet d'ignition)
+-- Effet d'invocation spéciale depuis la cimetière en Position de Défense (effet d'ignition)
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
     return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==1
 end
