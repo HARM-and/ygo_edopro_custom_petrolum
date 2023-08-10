@@ -65,7 +65,7 @@ end
 function s.operation(e,tp,eg,ep,ev,re,r,rp)
     local opt=e:GetLabel()
     local c=e:GetHandler()
-    local g=Duel.GetMatchingGroup(aux.FilterFaceupFunction(Card.IsSetCard,0xcaf),tp,LOCATION_MZONE,0,nil)
+    local g=Duel.GetMatchingGroup(aux.FaceupFilter(Card.IsSetCard,0xcaf),tp,LOCATION_MZONE,0,nil)
     for tc in aux.Next(g) do
         if opt==0 then
             -- Effet pour les monstres Synchro "Caffey"
