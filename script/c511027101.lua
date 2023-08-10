@@ -46,15 +46,13 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
     end
 end
 
--- Effet d'invocation spéciale depuis la main en Position de Défense
+-- Effet d'invocation spéciale depuis la main en Position de Défense (effet d'ignition)
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
-    return Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsSetCard,0xCAF),tp,LOCATION_MZONE,0,1,nil)
+    return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==1
 end
 
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-    if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-        and Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsSetCard,0xCAF),tp,LOCATION_MZONE,0,1,nil)
-    end
+    if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 end
     Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)
 end
 
@@ -63,7 +61,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
     local c=e:GetHandler()
     if c:IsRelateToEffect(e) and c:IsFaceup() and c:IsControler(tp) then
         Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-        local g=Duel.SelectMatchingCard(tp,aux.FaceupFilter(Card.IsSetCard,0xCAF),tp,LOCATION_MZONE,0,1,1,nil)
+        local g=Duel.SelectMatchingCard(tp,aux.FilterFaceupFunction(Card.IsSetCard,0xCAF),tp,LOCATION_HAND,0,1,1,nil)
         if #g>0 then
             Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP_DEFENSE)
         end
