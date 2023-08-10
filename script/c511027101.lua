@@ -52,7 +52,7 @@ function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-    if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 end
+    if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.FaceupFilter(Card.IsSetCard,0xCAF),tp,LOCATION_HAND,0,1,nil) end
     Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)
 end
 
