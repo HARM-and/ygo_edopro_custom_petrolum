@@ -16,21 +16,17 @@ function s.initial_effect(c)
     e2:SetCode(EVENT_SPSUMMON_SUCCESS)
     c:RegisterEffect(e2)
 
-    -- Effet d'invocation spéciale depuis la main en Position de Défense
+    -- Effet d'invocation spéciale depuis la main en Position de Défense (effet d'ignition)
     local e3=Effect.CreateEffect(c)
     e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
-    e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
-    e3:SetCode(EVENT_SUMMON_SUCCESS)
-    e3:SetProperty(EFFECT_FLAG_DELAY)
+    e3:SetType(EFFECT_TYPE_IGNITION)
+    e3:SetRange(LOCATION_MZONE)
     e3:SetCountLimit(1,id+100)
     e3:SetCondition(s.spcon)
+    e3:SetCost(s.spcost)
     e3:SetTarget(s.sptg)
     e3:SetOperation(s.spop)
     c:RegisterEffect(e3)
-
-    local e4=e3:Clone()
-    e4:SetCode(EVENT_SPSUMMON_SUCCESS)
-    c:RegisterEffect(e4)
 end
 
 -- Effet d'ajout depuis le Deck
