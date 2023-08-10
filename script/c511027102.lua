@@ -1,8 +1,5 @@
 -- Doppio, Caffey Barista
--- par [Ton nom ou pseudo]
-
 local s,id=GetID()
-
 function s.initial_effect(c)
     -- Effet d'ajout depuis le Deck
     local e1=Effect.CreateEffect(c)
