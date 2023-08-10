@@ -28,7 +28,6 @@ function s.initial_effect(c)
     e3:SetOperation(s.spop)
     c:RegisterEffect(e3)
 end
-
 -- Effet d'ajout depuis le Deck
 function s.thfilter(c)
     return c:IsSetCard(0xCAF) and c:IsType(TYPE_MONSTER) and not c:IsCode(id) and c:IsAbleToHand()
