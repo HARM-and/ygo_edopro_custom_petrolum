@@ -1,10 +1,6 @@
---Esprit Caffey
 -- Esprit Caffey
--- par [Ton nom ou pseudo]
--- Cette carte a été créée avec l'aide de l'Assistant GPT-3 d'OpenAI
 
 local s,id=GetID()
-
 function s.initial_effect(c)
     -- Effet de cimetière
     local e1=Effect.CreateEffect(c)
