@@ -6,7 +6,7 @@ function s.initial_effect(c)
     e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
     e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
     e1:SetCode(EVENT_SUMMON_SUCCESS)
-    e1:SetProperty(EFFECT_FLAG_DELAY)
+    e1:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DELAY)
     e1:SetCountLimit(1,id)
     e1:SetTarget(s.thtg)
     e1:SetOperation(s.thop)
@@ -29,7 +29,7 @@ function s.initial_effect(c)
 end
 -- Effet d'ajout depuis le Deck
 function s.thfilter(c)
-    return c:IsSetCard(0xCAF) and c:IsType(TYPE_MONSTER) and not c:IsCode(id) and c:IsAbleToHand()
+    return c:IsSetCard(0xCAF) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()
 end
 
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -52,8 +52,8 @@ function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-    if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_GRAVEYARD,0,1,nil,e,tp) end
-    Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVEYARD)
+    if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_GRAVE,0,1,nil,e,tp) end
+    Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVE)
 end
 
 function s.filter(c,e,tp)
@@ -63,7 +63,7 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
     if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
     Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-    local g=Duel.SelectMatchingCard(tp,s.filter,tp,LOCATION_GRAVEYARD,0,1,1,nil,e,tp)
+    local g=Duel.SelectMatchingCard(tp,s.filter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
     if #g>0 then
         Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP_DEFENSE)
     end
