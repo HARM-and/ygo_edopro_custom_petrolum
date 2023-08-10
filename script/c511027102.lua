@@ -48,7 +48,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 end
 
 -- Effet d'invocation spéciale depuis la cimetière en Position de Défense (effet d'ignition)
-function s.spcon(e,tp,eg,ep,ev,re,r,rp)
+function s.spcondop(e,tp,eg,ep,ev,re,r,rp)
     return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)==1
 end
 
