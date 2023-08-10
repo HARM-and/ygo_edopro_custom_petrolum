@@ -61,7 +61,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
     local c=e:GetHandler()
     if c:IsRelateToEffect(e) and c:IsFaceup() and c:IsControler(tp) then
         Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-        local g=Duel.SelectMatchingCard(tp,aux.FilterFaceupFunction(Card.IsSetCard,0xCAF),tp,LOCATION_HAND,0,1,1,nil)
+        local g=Duel.SelectMatchingCard(tp,aux.FaceupFilter(Card.IsSetCard,0xCAF),tp,LOCATION_HAND,0,1,1,nil)
         if #g>0 then
             Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP_DEFENSE)
         end
