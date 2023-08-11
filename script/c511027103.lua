@@ -2,7 +2,7 @@
 local s,id=GetID()
 function s.initial_effect(c)
     -- Activation de l'effet
-    aux.AddFieldSpell(c,s.spellsummon)
+    --                aux.AddFieldSpell(c,s.spellsummon)
     -- Effets sur l'Invocation Spéciale
     local e1=Effect.CreateEffect(c)
     e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
@@ -19,12 +19,12 @@ function s.initial_effect(c)
 end
 
 -- Activation de l'effet
-function s.spellsummon(e,c)
-    local tp=e:GetHandlerPlayer()
-    local seq=c:GetSequence()
-    local fc=Duel.GetFieldCard(tp,LOCATION_SZONE,5-seq)
-    return fc and fc:IsSetCard(0xCAF) and (fc:IsType(TYPE_SYNCHRO) or fc:IsType(TYPE_XYZ))
-end
+--function s.spellsummon(e,c)
+    --local tp=e:GetHandlerPlayer()
+    --local seq=c:GetSequence()
+    --local fc=Duel.GetFieldCard(tp,LOCATION_SZONE,5-seq)
+    --return fc and fc:IsSetCard(0xCAF) and (fc:IsType(TYPE_SYNCHRO) or fc:IsType(TYPE_XYZ))
+--end
 
 -- Effets sur l'Invocation Spéciale
 function s.syncon(e,tp,eg,ep,ev,re,r,rp)
