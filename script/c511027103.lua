@@ -2,20 +2,23 @@
 local s,id=GetID()
 function s.initial_effect(c)
     -- Activation de l'effet
-    --                aux.AddFieldSpell(c,s.spellsummon)
-    -- Effets sur l'Invocation Spéciale
     local e1=Effect.CreateEffect(c)
-    e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
-    e1:SetCode(EVENT_SPSUMMON_SUCCESS)
-    e1:SetProperty(EFFECT_FLAG_DELAY)
-    e1:SetRange(LOCATION_FZONE)
-    e1:SetCondition(s.syncon)
-    e1:SetOperation(s.synop)
-    c:RegisterEffect(e1)
-    local e2=e1:Clone()
-    e2:SetCondition(s.xyzcon)
-    e2:SetOperation(s.xyzop)
+	e1:SetType(EFFECT_TYPE_ACTIVATE)
+	e1:SetCode(EVENT_FREE_CHAIN)
+	c:RegisterEffect(e1)
+    -- Effets sur l'Invocation Spéciale
+    local e2=Effect.CreateEffect(c)
+    e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+    e2:SetCode(EVENT_SPSUMMON_SUCCESS)
+    e2:SetProperty(EFFECT_FLAG_DELAY)
+    e2:SetRange(LOCATION_FZONE)
+    e2:SetCondition(s.syncon)
+    e2:SetOperation(s.synop)
     c:RegisterEffect(e2)
+    local e3=e2:Clone()
+    e3:SetCondition(s.xyzcon)
+    e3:SetOperation(s.xyzop)
+    c:RegisterEffect(e3)
 end
 
 -- Activation de l'effet
